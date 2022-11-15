@@ -5,9 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import { Content, TableBody, TableData, TableHead, TableRow } from "./styles";
 import { InfoText, Title } from "../../../styles/global";
-import IconVerde from "../../../../public/icon/IconVerde";
-import IconAzul from "../../../../public/icon/IconAzul";
 import { CurrencyCircleDollar } from "phosphor-react";
+import IconVerde from "../../../../public/icon/iconVerde";
+import IconAzul from "../../../../public/icon/iconAzul";
 
 // function createData(name: string, calories: number, fat: number) {
 //   return { name, calories, fat };

@@ -7,7 +7,7 @@ export default function MainPage() {
     <>
       <Topbar />
       <HandlingMoney />
-      <TransferActivities />
+      {/* <TransferActivities /> */}
     </>
   );
 }
