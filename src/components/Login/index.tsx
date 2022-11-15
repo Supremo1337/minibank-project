@@ -25,8 +25,8 @@ import Link from "next/link";
 // import useLocalStorage from "use-local-storage";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { TextTitle } from "../../styles/global";
 import LogoNG from "../../../public/icon/LogoNG";
+import { TextTitle } from "../../styles/global";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);

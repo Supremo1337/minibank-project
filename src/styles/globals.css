@@ -15,6 +15,7 @@ a {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
+  font-size: 62.5%;
 }
 
 @media (prefers-color-scheme: dark) {
