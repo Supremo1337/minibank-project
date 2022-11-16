@@ -1,4 +1,5 @@
 import { EyeSlash } from "phosphor-react";
+import { useState } from "react";
 import { InfoText, Title } from "../../styles/global";
 import {
   BalanceBox,
@@ -13,9 +14,16 @@ import {
   TransferAndFilter,
   InputsAndButton,
   DivTeste,
+  SelectFilter,
+  FilterOptions,
 } from "./styles";
 
 export default function HandlingMoney() {
+  const [money, setMoney] = useState("$ 100,00");
+  const [show, setShow] = useState(true);
+
+  function onClick() {}
+
   return (
     <Content>
       <TransferAndFilter>
@@ -23,11 +31,18 @@ export default function HandlingMoney() {
           <BalanceBox>
             <BalanceGroupTextAndIcon>
               <Title fontSize="1.6rem">Balance</Title>
-              <EyeSlash size={16} color="#ffffff" />
+              <button
+                onClick={() => setShow(!show)}
+                style={{
+                  background: "none",
+                  border: "none",
+                }}
+              >
+                <EyeSlash size={16} color="#ffffff" cursor={"pointer"} />
+              </button>
             </BalanceGroupTextAndIcon>
-            <BalanceText>$ --</BalanceText>
+            <BalanceText>{show ? money : "$ --"}</BalanceText>
           </BalanceBox>
-
           <Transfer>
             <Title fontSize="1.6rem" mgb="4px">
               Transferir para usuário NG
@@ -55,13 +70,12 @@ export default function HandlingMoney() {
           <InputsAndButton>
             <FilterGroupTextAndInput>
               <InfoText fontSize="1.8rem">Filtro</InfoText>
-              <BalanceInput
-                mg="0"
-                width="83%"
-                widthLaptop="80%"
-                maxWidth="305px"
-                placeholder="Selecione um filtro"
-              />
+              <SelectFilter defaultValue={"Selecione um filtro"}>
+                <FilterOptions>Selecione um filtro</FilterOptions>
+                <FilterOptions>Filtrar por Data</FilterOptions>
+                <FilterOptions>Filtrar por Cash-in</FilterOptions>
+                <FilterOptions>Filtrar por Cash-out</FilterOptions>
+              </SelectFilter>
             </FilterGroupTextAndInput>
             <BalanceInput
               mg="12px 0 22px 0"
@@ -69,6 +83,7 @@ export default function HandlingMoney() {
               widthLaptop="42%"
               maxWidth="436px"
               placeholder="12/11/2022"
+              type={"date"}
             />
             <Button>Filtrar</Button>
           </InputsAndButton>

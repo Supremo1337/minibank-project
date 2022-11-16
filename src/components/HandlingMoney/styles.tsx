@@ -10,7 +10,7 @@ interface BalanceInputProps {
 export const Content = styled.div`
   width: 100%;
   height: 500px;
-  background: #232343;
+  background: #232323;
   display: flex;
   margin-top: 32px;
   padding: 0px 22px;
@@ -28,7 +28,7 @@ export const Content = styled.div`
 `;
 
 export const BalanceBox = styled.div`
-  width: 90px;
+  width: auto;
   height: 70px;
   /* background: blue; */
   display: flex;
@@ -42,7 +42,7 @@ export const BalanceText = styled.label`
 `;
 
 export const BalanceGroupTextAndIcon = styled.div`
-  width: 90%;
+  width: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,7 +51,7 @@ export const BalanceGroupTextAndIcon = styled.div`
 export const TransferAndFilter = styled.div`
   width: 100%;
   height: 480px;
-  background: pink;
+  /* background: pink; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,7 +67,7 @@ export const Transfer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  background: red;
+  /* background: red; */
   @media (min-width: 1024px) {
     width: 80%;
   }
@@ -76,7 +76,7 @@ export const Transfer = styled.div`
 export const BalanceInput = styled.input<BalanceInputProps>`
   width: ${(props) => props.width};
   height: 48px;
-  /* background: #343840; */
+  background: #343840;
   font-size: 1.6rem;
   border: 0px;
   border-radius: 8px;
@@ -98,7 +98,7 @@ export const Filter = styled.div`
   height: 178px;
   display: flex;
   flex-direction: column;
-  background: blue;
+  /* background: blue; */
   @media (min-width: 1024px) {
     width: 90%;
     height: auto;
@@ -110,7 +110,7 @@ export const FilterGroupTextAndInput = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: purple;
+  /* background: purple; */
   @media (min-width: 1024px) {
     width: 40%;
   }
@@ -131,7 +131,7 @@ export const InputsAndButton = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
     display: flex;
-    background: green;
+    /* background: green; */
     justify-content: space-between;
   }
 `;
@@ -142,4 +142,29 @@ export const DivTeste = styled.div`
     display: flex;
     justify-content: space-between;
   }
+`;
+
+export const SelectFilter = styled.select`
+  width: 83%;
+  height: 48px;
+  background: #343840;
+  font-size: 1.6rem;
+  border: 0px;
+  border-radius: 8px;
+  outline: none;
+  padding-left: 18px;
+  margin: 0;
+  ::placeholder {
+    color: #fff;
+  }
+  @media (min-width: 1024px) {
+    margin: 0;
+    width: 80;
+    max-width: 305px; /*436px *305px; */
+  }
+`;
+
+export const FilterOptions = styled.option`
+  font-size: 1.6rem;
+  border: 0px;
 `;

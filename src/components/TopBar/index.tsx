@@ -13,7 +13,7 @@ interface InfoTextProps {
 export default function Topbar() {
   return (
     <Content>
-      <LogoNGPorExtenso />
+      {/* <LogoNGPorExtenso /> */}
       <UserCard>
         <InfoText fontSize="1.6rem">Gabriel</InfoText>
           <UserPhoto />
