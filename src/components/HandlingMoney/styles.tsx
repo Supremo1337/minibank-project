@@ -9,8 +9,7 @@ interface BalanceInputProps {
 
 export const Content = styled.div`
   width: 100%;
-  height: 500px;
-  background: #232323;
+  height: 290px;
   display: flex;
   margin-top: 32px;
   padding: 0px 22px;
@@ -57,7 +56,7 @@ export const TransferAndFilter = styled.div`
   justify-content: space-between;
   @media (min-width: 1024px) {
     width: 100%;
-    height: 160px;
+    height: 70px;
     margin-top: 0px;
   }
 `;
@@ -83,6 +82,7 @@ export const BalanceInput = styled.input<BalanceInputProps>`
   outline: none;
   padding-left: 18px;
   margin: ${(props) => props.mg};
+  /* display: ${(props) => (props.title ? "Selecione um filtro" : "none")}; */
   ::placeholder {
     color: #fff;
   }
@@ -90,49 +90,6 @@ export const BalanceInput = styled.input<BalanceInputProps>`
     margin: 0;
     width: ${(props) => props.widthLaptop};
     max-width: ${(props) => props.maxWidth}; /*436px *305px; */
-  }
-`;
-
-export const Filter = styled.div`
-  width: 100%;
-  height: 178px;
-  display: flex;
-  flex-direction: column;
-  /* background: blue; */
-  @media (min-width: 1024px) {
-    width: 90%;
-    height: auto;
-  }
-`;
-
-export const FilterGroupTextAndInput = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* background: purple; */
-  @media (min-width: 1024px) {
-    width: 40%;
-  }
-`;
-
-export const Button = styled.button`
-  width: 112px;
-  height: 48px;
-  background: #202128;
-  font-size: 1.8rem;
-  border: 0px;
-  border-radius: 8px;
-  @media (min-width: 1024px) {
-  }
-`;
-
-export const InputsAndButton = styled.div`
-  @media (min-width: 1024px) {
-    width: 100%;
-    display: flex;
-    /* background: green; */
-    justify-content: space-between;
   }
 `;
 
@@ -144,27 +101,45 @@ export const DivTeste = styled.div`
   }
 `;
 
-export const SelectFilter = styled.select`
-  width: 83%;
-  height: 48px;
-  background: #343840;
-  font-size: 1.6rem;
-  border: 0px;
-  border-radius: 8px;
-  outline: none;
-  padding-left: 18px;
-  margin: 0;
-  ::placeholder {
-    color: #fff;
-  }
-  @media (min-width: 1024px) {
-    margin: 0;
-    width: 80;
-    max-width: 305px; /*436px *305px; */
+export const TitleModal = styled.div`
+  font: normal normal 600 3rem/43px Poppins;
+  color: #fff;
+  text-align: center;
+`;
+
+export const SubTitleModal = styled.label`
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  span {
+    font-size: 2rem;
+    color: #06d186;
   }
 `;
 
-export const FilterOptions = styled.option`
-  font-size: 1.6rem;
-  border: 0px;
+export const ButtonsRowGroup = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background: #06d186;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const YesSendButton = styled.button`
+  width: 190px;
+  height: 48px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: #000;
+  font-size: 2rem;
+`;
+export const NoSendButton = styled.button`
+  width: 190px;
+  height: 48px;
+  border: 0;
+  border-radius: 8px;
+  background: #3c3d4a;
+  font-size: 2rem;
 `;

@@ -1,0 +1,21 @@
+.c1wupbe7-0-0-beta-19 {
+  font-size: 1.6rem !important;
+  border: 0 !important;
+}
+.rdg.r104f42s7-0-0-beta-19 {
+  height: auto !important;
+  grid-template-columns: 200px 200px 200px 200px 200px !important;
+  margin-top: 20px;
+  border: 0 !important;
+}
+
+@media (min-width: 1202px) {
+  .rdg.r104f42s7-0-0-beta-19 {
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw !important;
+  }
+}
+@media (min-width: 1440px) {
+  .rdg.r104f42s7-0-0-beta-19 {
+    grid-template-columns: 12vw 10vw 16.1vw 16.1vw 24vw !important;
+  }
+}

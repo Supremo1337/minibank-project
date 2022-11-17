@@ -18,6 +18,6 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "public/icon/Logo.js", "src/pages/_document.js", "public/icon/LogoNGPorExtenso.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "public/icon/Logo.js", "src/pages/_document.js", "public/icon/LogoNGPorExtenso.js", "src/components/TranferActivities/table.tsx"],
   "exclude": ["node_modules"]
 }
