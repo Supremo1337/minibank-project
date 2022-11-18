@@ -7,6 +7,25 @@
   grid-template-columns: 200px 200px 200px 200px 200px !important;
   margin-top: 20px;
   border: 0 !important;
+  overflow-y: scroll !important;
+  max-height: 30vh !important;
+}
+
+.rdg-header-row.h197vzie7-0-0-beta-19 {
+  background: #1e1f21;
+}
+.rdg-row.r1otpg647-0-0-beta-19.rdg-row-even {
+  background: #000 !important;
+}
+.rdg-row.r1otpg647-0-0-beta-19.rdg-row-odd {
+  background: #000 !important;
+}
+
+@media (min-width: 1024px) {
+  .rdg.r104f42s7-0-0-beta-19 {
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw !important;
+    max-height: 54vh !important;
+  }
 }
 
 @media (min-width: 1202px) {
@@ -14,6 +33,7 @@
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw !important;
   }
 }
+
 @media (min-width: 1440px) {
   .rdg.r104f42s7-0-0-beta-19 {
     grid-template-columns: 12vw 10vw 16.1vw 16.1vw 24vw !important;

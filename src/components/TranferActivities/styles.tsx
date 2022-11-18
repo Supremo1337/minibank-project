@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Content2 = styled.div`
+export const Content = styled.div`
   width: 100%;
   height: auto;
   /* background: #232343; */
@@ -19,7 +19,7 @@ export const Content2 = styled.div`
 `;
 
 
-export const Content = styled.div`
+export const GroupFilterAndDataGrid = styled.div`
   width: 100%;
   height: auto;
   /* background: green; */
@@ -40,6 +40,8 @@ export const Filter = styled.div`
   @media (min-width: 1024px) {
     width: 90%;
     height: auto;
+    flex-direction: row;
+    justify-content:space-between;
   }
 `;
 export const FilterGroupTextAndInput = styled.div`

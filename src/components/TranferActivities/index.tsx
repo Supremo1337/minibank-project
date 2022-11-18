@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { ButtonSendAndFilter, InfoText, InputsAndButton, Title } from "../../styles/global";
+import { ButtonSendAndFilter, InfoText, Title } from "../../styles/global";
 import { BalanceInput } from "../HandlingMoney/styles";
-import { Content, Content2, Filter, FilterGroupTextAndInput, FilterOptions, SelectFilter } from "./styles";
+import { GroupFilterAndDataGrid, Content, Filter, FilterGroupTextAndInput, FilterOptions, SelectFilter } from "./styles";
 import "react-data-grid/lib/styles.css";
 import DataGrid from "react-data-grid";
 import { rows } from "./rows";
@@ -54,11 +54,10 @@ export default function TransferActivities() {
   }
   console.log(isSelected, "SELECTED");
   return (
-    <Content2>
+    <Content>
       <Title fontSize="16px">Atividades de transferência</Title>
-      <Content>
+      <GroupFilterAndDataGrid>
         <Filter>
-          <InputsAndButton>
             <FilterGroupTextAndInput>
               <InfoText fontSize="1.8rem">Filtro</InfoText>
               <SelectFilter
@@ -97,10 +96,9 @@ export default function TransferActivities() {
                 </ButtonSendAndFilter>
               </>
             )}
-          </InputsAndButton>
         </Filter>
         <DataGrid columns={columns} rows={filter} />
-      </Content>
-    </Content2>
+      </GroupFilterAndDataGrid>
+    </Content>
   );
 }

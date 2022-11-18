@@ -1,31 +1,31 @@
-import { SignOut } from "phosphor-react";
-import LogoNGPorExtenso from "../../../public/icon/LogoNGPorExtenso";
-import { InfoText } from "../../styles/global";
 import {
   Content,
-  GroupCardAndLogOut,
-  LogOutGroup,
-  LogOut,
-  UserCard,
+  GroupPerfilAndLogOut,
+  UserPerfil,
   UserPhoto,
+  LogOut,
+  IconAndLogOutButtonGrouping,
 } from "./styles";
+import LogoNGPorExtenso from "../../../public/icon/LogoNGPorExtenso";
+import { SignOut } from "phosphor-react";
+import { InfoText } from "../../styles/global";
 
 export default function Topbar() {
   return (
     <Content>
       <LogoNGPorExtenso />
-      <GroupCardAndLogOut>
-        <UserCard>
+      <GroupPerfilAndLogOut>
+        <UserPerfil>
           <InfoText fontSize="1.6rem">Gabriel</InfoText>
           <UserPhoto />
-        </UserCard>
+        </UserPerfil>
         <LogOut>
-          <LogOutGroup>
+          <IconAndLogOutButtonGrouping>
             <SignOut size={24} color="#ffffff" />
             <InfoText fontSize="1.6rem">Sair</InfoText>
-          </LogOutGroup>
+          </IconAndLogOutButtonGrouping>
         </LogOut>
-      </GroupCardAndLogOut>
+      </GroupPerfilAndLogOut>
     </Content>
   );
 }

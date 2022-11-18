@@ -1,13 +1,23 @@
 import styled from "styled-components";
-export const CheckboxContainer = styled.div`
+
+interface CheckboxProps {
+  checked?: unknown;
+}
+
+export const CheckboxContainer = styled.div<CheckboxProps>`
   padding-left: 5px;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 100%;
   user-select: none;
+  /* background: red; */
+  @media (min-width: 1024px) {
+    width: 60%;
+  }
 `;
-export const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
+
+export const HiddenCheckbox = styled.input.attrs({type: "checkbox"})<CheckboxProps>`
   overflow: hidden;
   white-space: nowrap;
   width: 1px;
@@ -16,12 +26,13 @@ export const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
   padding: 0;
   user-select: none;
 `;
-export const StyledCheckbox = styled.label`
+
+export const StyledCheckbox = styled.label<CheckboxProps>`
   width: 24px;
   height: 24px;
   border-radius: 4px;
   margin-right: 8px;
-  background-color: ${(props) => (props.checked ? "#C0303C" : "")};
+  background-color: ${(props) => (props.checked ? "#000" : "")};
   border: ${(props) => (props.checked ? "" : "1px solid")};
   display: flex;
   justify-content: center;

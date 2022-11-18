@@ -14,6 +14,7 @@ export const Content = styled.div`
   margin-top: 32px;
   padding: 0px 22px;
   flex-direction: column;
+  /* background: red; */
   @media (min-width: 1024px) {
     width: 100%;
     flex-direction: row;
@@ -40,14 +41,14 @@ export const BalanceText = styled.label`
   color: #d2d2d2;
 `;
 
-export const BalanceGroupTextAndIcon = styled.div`
+export const BalanceTitleAndIconGroup = styled.div`
   width: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const TransferAndFilter = styled.div`
+export const TransferBox = styled.div`
   width: 100%;
   height: 480px;
   /* background: pink; */
@@ -56,8 +57,9 @@ export const TransferAndFilter = styled.div`
   justify-content: space-between;
   @media (min-width: 1024px) {
     width: 100%;
-    height: 70px;
+    height: 77px;
     margin-top: 0px;
+    flex-direction: row;
   }
 `;
 
@@ -66,7 +68,7 @@ export const Transfer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  /* background: red; */
+  /* background: cyan; */
   @media (min-width: 1024px) {
     width: 80%;
   }
@@ -93,8 +95,9 @@ export const BalanceInput = styled.input<BalanceInputProps>`
   }
 `;
 
-export const DivTeste = styled.div`
+export const DivPlaceFilterInline = styled.div`
   @media (min-width: 1024px) {
+    /* background: pink; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -102,9 +105,12 @@ export const DivTeste = styled.div`
 `;
 
 export const TitleModal = styled.div`
-  font: normal normal 600 3rem/43px Poppins;
+  font: normal normal 600 2.2rem Poppins;
   color: #fff;
   text-align: center;
+  @media (min-width: 1024px) {
+    font: normal normal 600 3rem/4.3rem Poppins;
+  }
 `;
 
 export const SubTitleModal = styled.label`
@@ -121,7 +127,7 @@ export const ButtonsRowGroup = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  background: #06d186;
+  /* background: #06d186; */
   align-items: center;
   justify-content: center;
   gap: 20px;
@@ -134,6 +140,7 @@ export const YesSendButton = styled.button`
   border-radius: 8px;
   background: #000;
   font-size: 2rem;
+  cursor: pointer;
 `;
 export const NoSendButton = styled.button`
   width: 190px;
@@ -142,4 +149,5 @@ export const NoSendButton = styled.button`
   border-radius: 8px;
   background: #3c3d4a;
   font-size: 2rem;
+  cursor: pointer;
 `;

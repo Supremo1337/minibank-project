@@ -1,36 +1,35 @@
 import React, { useState } from "react";
-// import { TextTitle } from "../../styles/global";
 import {
-  BackgroundOverlay,
-  Content,
-  ForgetAndLogin,
+  ForgetAndLoginBox,
   FormLogin,
   GroupCheckBoxAndButton,
-  Header,
-  InputAndText,
-  InputLogin,
-  LoginBox,
-  LoginSubmit,
   TextForgetAndLogin,
-  TitleH1,
 } from "./styles";
 import {
   CheckboxContainer,
   HiddenCheckbox,
   StyledCheckbox,
 } from "./CheckBoxLogin";
+import { useRouter } from "next/router";
+import { TextTitle } from "../../../styles/global";
+import {
+  Content,
+  Header,
+  InputAndTextDiv,
+  InputLoginOrSingUp as InputLogin,
+  LoginOrSingUpSubmit as LoginSubmit,
+  MidWhiteBox,
+  TitleH1,
+} from "../stylesLoginAndSingUp";
 import { Envelope, Lock } from "phosphor-react";
+import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
 // import axios from "axios";
 // import useLocalStorage from "use-local-storage";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import LogoNG from "../../../public/icon/LogoNG";
-import { TextTitle } from "../../styles/global";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [comparativeLogin, setComparativeLogin] = useState("");
   // const [token, setToken] = useLocalStorage("tokenTormenta20", null);
@@ -44,7 +43,7 @@ export default function Login() {
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
-  //   const jsonLogin = { email, password };
+  //   const jsonLogin = { username, password };
   //   const res = axios
   //     .post("http://localhost:8000/api/authme/authenticate", jsonLogin, {
   //       headers: { "Content-Type": "application/json" },
@@ -62,7 +61,7 @@ export default function Login() {
   // };
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return username.length > 0 && password.length > 0;
   }
 
   // function handleSubmit(event) {
@@ -77,50 +76,56 @@ export default function Login() {
 
   return (
     <Content>
-      <LoginBox>
+      <MidWhiteBox>
         <Header>
-          <LogoNG />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;600&family=Poppins&display=swap"
-            rel="stylesheet"
-          />
+          <LogoNG width={130} />
+         
           <TitleH1>NG CASH</TitleH1>
-          <TextTitle>Faça login e aproveite sua aventura</TextTitle>
+          <TextTitle textAlign={"center"}>
+            Faça login e conheça a carteira digital da nova geração.
+          </TextTitle>
         </Header>
         <FormLogin>
-          <InputAndText>
-            <TextTitle>Endereço de e-mail</TextTitle>
-            {/* <Envelope
+          <InputAndTextDiv>
+            <TextTitle>Seu nome de Usuário</TextTitle>
+            <Envelope
               size={24}
               color="#7C7C8A"
-              style={{ position: "relative", top: "29px", left: "10px" }}
-            /> */}
+              style={{ position: "absolute", top: "39px", left: "10px" }}
+            />
             <InputLogin
               autoFocus
-              type="email"
-              value={email}
-              placeholder="johndoe@gmail.com"
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              placeholder="Seu Username (mínimo de 3 caracteres)"
+              onChange={(e) => setUsername(e.target.value)}
+              minLength={3}
+              required
             />
-          </InputAndText>
-          <InputAndText>
+          </InputAndTextDiv>
+          <InputAndTextDiv>
             <TextTitle>Insira sua Senha</TextTitle>
-            {/* <Lock
+            <Lock
               size={24}
               color="#7C7C8A"
-              style={{ position: "relative", top: "29px", left: "10px" }}
-            /> */}
+              style={{ position: "absolute", top: "39px", left: "10px" }}
+            />
             <InputLogin
               type="password"
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
+              required
             />
-          </InputAndText>
+          </InputAndTextDiv>
           <GroupCheckBoxAndButton>
-            <CheckboxContainer onClick={handleCheckboxChange}>
-              <HiddenCheckbox onChange={handleCheckboxChange} />
-              <StyledCheckbox>
+            <CheckboxContainer checked={checked} onClick={handleCheckboxChange}>
+              <HiddenCheckbox
+                onChange={handleCheckboxChange}
+                checked={checked}
+              />
+              <StyledCheckbox checked={checked}>
                 <div
                   style={{
                     width: "20px",
@@ -131,25 +136,22 @@ export default function Login() {
               </StyledCheckbox>
               <TextTitle>Lembrar de mim por 30 dias</TextTitle>
             </CheckboxContainer>
-            {/* <Link href="./ficha"> */}
             <a>
-              <LoginSubmit type={"submit"} value="ENTRAR NA SUA CONTA" />
+              <LoginSubmit
+                type={"submit"}
+                value="ENTRAR NA SUA CONTA"
+                mgt={"0"}
+              />
             </a>
-            {/* </Link> */}
           </GroupCheckBoxAndButton>
         </FormLogin>
-        <ForgetAndLogin>
+        <ForgetAndLoginBox>
           <TextForgetAndLogin>Esqueceu sua senha?</TextForgetAndLogin>
-          {/* <Link href="./singUp"> */}
-          {/* <a> */}
           <TextForgetAndLogin>
             não possui conta? crie uma agora!
           </TextForgetAndLogin>
-          {/* </a> */}
-          {/* </Link> */}
-        </ForgetAndLogin>
-      </LoginBox>
-      {/* <BackgroundOverlay/> */}
+        </ForgetAndLoginBox>
+      </MidWhiteBox>
     </Content>
   );
 }

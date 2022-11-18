@@ -1,34 +1,24 @@
 import React, { useState } from "react";
-// import { TextTitle } from "../../styles/global";
 import {
-  BackgroundOverlay,
   Content,
-  FormLogin,
-  GroupCheckBoxAndButton,
+  MidWhiteBox,
   Header,
-  InputAndText,
-  InputLogin,
-  LoginBox,
-  LoginSubmit,
   TitleH1,
-} from "./styles";
-// import { TormentaLogoLogin } from "../../../public/img/TormentaLogoLogin";
-import {
-  CheckboxContainer,
-  HiddenCheckbox,
-  StyledCheckbox,
-} from "./CheckBoxLogin";
-// import { Envelope, Lock } from "phosphor-react";
+  InputAndTextDiv,
+  InputLoginOrSingUp as InputSignUp,
+  LoginOrSingUpSubmit as SignUpSubmit,
+} from "../stylesLoginAndSingUp";
+import { TextTitle } from "../../../styles/global";
+import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
-import { TextTitle } from "../../styles/global";
-import LogoNG from "../../../public/icon/LogoNG";
+import { Envelope, Lock } from "phosphor-react";
+import { FormSingUp } from "./styles";
 // import axios from "axios";
 
 export default function SingUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [checked, setChecked] = useState(false);
   const [comparativeSingUp, setComparativeSingUp] = useState("");
   const [second, setSecond] = useState("");
 
@@ -54,75 +44,70 @@ export default function SingUp() {
   //     });
   // }
 
-  function handleCheckboxChange() {
-    setChecked(!checked);
-  }
-
   return (
     <Content>
-      <LoginBox>
+      <MidWhiteBox>
         <Header>
-          <LogoNG />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;600&family=Poppins&display=swap"
-            rel="stylesheet"
-          />
+          <LogoNG width={130} />
           <TitleH1>NG CASH</TitleH1>
-          <TextTitle>Crie sua conta e aproveite sua aventura</TextTitle>
+          <TextTitle textAlign={"center"}>
+            Crie sua conta e conheça a carteira digital da nova geração
+          </TextTitle>
         </Header>
-        <FormLogin>
-          <InputAndText>
-            <TextTitle>Endereço de e-mail</TextTitle>
-            {/* <Envelope
+        <FormSingUp>
+          <InputAndTextDiv>
+            <TextTitle>Seu nome de Usuário</TextTitle>
+            <Envelope
               size={24}
               color="#7C7C8A"
-              style={{ position: "relative", top: "29px", left: "10px" }}
-            /> */}
-            <InputLogin
+              style={{ position: "absolute", top: "36px", left: "10px" }}
+            />
+            <InputSignUp
               autoFocus
-              type="email"
               value={email}
               placeholder="johndoe@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
+              minLength={3}
+              required
             />
-          </InputAndText>
-          <InputAndText>
+          </InputAndTextDiv>
+          <InputAndTextDiv>
             <TextTitle>Insira sua Senha</TextTitle>
-            {/* <Lock
+            <Lock
               size={24}
               color="#7C7C8A"
-              style={{ position: "relative", top: "29px", left: "10px" }}
-            /> */}
-            <InputLogin
+              style={{ position: "absolute", top: "36px", left: "10px" }}
+            />
+            <InputSignUp
               type="password"
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
+              required
             />
-          </InputAndText>
-          <InputAndText>
+          </InputAndTextDiv>
+          <InputAndTextDiv>
             <TextTitle>Confirmar sua senha</TextTitle>
-            {/* <Lock
+            <Lock
               size={24}
               color="#7C7C8A"
-              style={{ position: "relative", top: "29px", left: "10px" }}
-            /> */}
-            <InputLogin
+              style={{ position: "absolute", top: "36px", left: "10px" }}
+            />
+            <InputSignUp
               type="password"
               value={confirmPassword}
               placeholder="********"
               onChange={(e) => setConfirmPassword(e.target.value)}
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
+              required
             />
-          </InputAndText>
-            {/* <Link href="./"> */}
-            <a>
-              <LoginSubmit type={"submit"} value="CRIAR SUA CONTA" />
-              <TextTitle></TextTitle>
-            </a>
-            {/* </Link> */}
-        </FormLogin>
-      </LoginBox>
-      <BackgroundOverlay></BackgroundOverlay>
+          </InputAndTextDiv>
+          <SignUpSubmit mgt={"30px"} type={"submit"} value="CRIAR SUA CONTA" />
+        </FormSingUp>
+      </MidWhiteBox>
     </Content>
   );
 }

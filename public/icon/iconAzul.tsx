@@ -1,6 +1,6 @@
 import * as React from "react"
 
-function IconAzul() {
+export function IconAzul() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,5 +45,3 @@ function IconAzul() {
     </svg>
   )
 }
-
-export default IconAzul

@@ -5,6 +5,10 @@ interface InfoTextProps {
   mgb?: string;
 }
 
+interface TextTitleProps {
+  textAlign?: string;
+}
+
 export const InfoText = styled.label<InfoTextProps>`
   font-size: ${(props) => props.fontSize}; /*  16 ou 18 */
   color: #fff;
@@ -16,11 +20,12 @@ export const Title = styled.label<InfoTextProps>`
   margin-bottom: ${(props) => props.mgb};
 `;
 
-export const TextTitle = styled.div`
-  font-size: 16px;
+export const TextTitle = styled.div<TextTitleProps>`
+  font-size: 1.6rem;
+  text-align: ${(props) => props.textAlign};
 `;
 
-export const InputsAndButton = styled.div`
+export const DivToPlaceInputAndButtonInRow = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
     display: flex;

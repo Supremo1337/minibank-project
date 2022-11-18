@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Content = styled.div`
   width: 100%;
   height: 100px;
-  background: #1b1b2d;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,12 +20,12 @@ export const LogOut = styled.button`
   cursor: pointer;
 `;
 
-export const GroupCardAndLogOut = styled.div`
+export const GroupPerfilAndLogOut = styled.div`
   width: 160px;
   display: flex;
   flex-direction: column;
   &:hover ${LogOut} {
-    width: 160px;
+    width: 100%;
     height: 40px;
     background: #202128;
     display: flex;
@@ -36,14 +35,14 @@ export const GroupCardAndLogOut = styled.div`
   }
 `;
 
-export const LogOutGroup = styled.div`
+export const IconAndLogOutButtonGrouping = styled.div`
   width: 80%;
   display: flex;
   align-items: center;
   gap: 8px;
 `;
 
-export const UserCard = styled.div`
+export const UserPerfil = styled.div`
   width: 160px;
   height: 40px;
   background: #202128;
