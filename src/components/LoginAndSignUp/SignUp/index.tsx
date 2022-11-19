@@ -11,7 +11,7 @@ import {
 import { TextTitle } from "../../../styles/global";
 import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
-import { Envelope, Lock } from "phosphor-react";
+import { Envelope, Eye, Lock } from "phosphor-react";
 import { FormSingUp } from "./styles";
 // import axios from "axios";
 
@@ -19,6 +19,8 @@ export default function SingUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [comparativeSingUp, setComparativeSingUp] = useState("");
   const [second, setSecond] = useState("");
 
@@ -79,13 +81,24 @@ export default function SingUp() {
               style={{ position: "absolute", top: "36px", left: "10px" }}
             />
             <InputSignUp
-              type="password"
+              type={showPassword ? "password" : "text"}
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
               required
+            />
+            <Eye
+              size={20}
+              color="#7c7c8a"
+              style={{
+                position: "absolute",
+                top: "40px",
+                right: "20px",
+                cursor: "pointer",
+              }}
+              onClick={() => setShowPassword(!showPassword)}
             />
           </InputAndTextDiv>
           <InputAndTextDiv>
@@ -96,7 +109,7 @@ export default function SingUp() {
               style={{ position: "absolute", top: "36px", left: "10px" }}
             />
             <InputSignUp
-              type="password"
+              type={showConfirmPassword ? "password" : "text"}
               value={confirmPassword}
               placeholder="********"
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -104,8 +117,19 @@ export default function SingUp() {
               title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
               required
             />
+            <Eye
+              size={20}
+              color="#7c7c8a"
+              style={{
+                position: "absolute",
+                top: "40px",
+                right: "20px",
+                cursor: "pointer",
+              }}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
           </InputAndTextDiv>
-          <SignUpSubmit mgt={"30px"} type={"submit"} value="CRIAR SUA CONTA" />
+          <SignUpSubmit mgt={"20px"} type={"submit"} value="CRIAR SUA CONTA" />
         </FormSingUp>
       </MidWhiteBox>
     </Content>

@@ -1,4 +1,13 @@
-export const rows = [
+export interface Props {
+  id?: string;
+  titleValue?: string;
+  titleFrom?: string;
+  titlePara?: string;
+  titleDate?: string;
+}
+
+
+export const rows: Props[] = [
   {
     id: `Cash-in`,
     titleValue: "$ 50",

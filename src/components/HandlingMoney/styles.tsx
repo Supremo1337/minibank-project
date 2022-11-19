@@ -68,9 +68,9 @@ export const Transfer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  /* background: cyan; */
   @media (min-width: 1024px) {
     width: 80%;
+    max-width: 775px;
   }
 `;
 

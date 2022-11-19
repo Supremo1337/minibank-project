@@ -21,6 +21,15 @@
   background: #000 !important;
 }
 
+.cell-id {
+  display: inline-flex;
+  align-items: center;
+}
+.cell-id-icon {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
 @media (min-width: 1024px) {
   .rdg.r104f42s7-0-0-beta-19 {
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw !important;
@@ -36,6 +45,6 @@
 
 @media (min-width: 1440px) {
   .rdg.r104f42s7-0-0-beta-19 {
-    grid-template-columns: 12vw 10vw 16.1vw 16.1vw 24vw !important;
+    grid-template-columns: 12vw 10vw 16.1vw 16.1vw 23.7vw !important;
   }
 }

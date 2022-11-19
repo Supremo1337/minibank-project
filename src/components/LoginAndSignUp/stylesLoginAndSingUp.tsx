@@ -73,7 +73,7 @@ export const InputAndTextDiv = styled.div`
 export const InputLoginOrSingUp = styled.input<InputLoginProps>`
   width: 100%;
   height: 48px;
-  padding-left: 40px;
+  padding: 0 40px;
   font-size: 1.2rem;
   outline: none;
   border: 1px solid black;

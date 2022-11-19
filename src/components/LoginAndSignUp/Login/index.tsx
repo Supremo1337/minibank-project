@@ -21,7 +21,7 @@ import {
   MidWhiteBox,
   TitleH1,
 } from "../stylesLoginAndSingUp";
-import { Envelope, Lock } from "phosphor-react";
+import { Envelope, Eye, Lock } from "phosphor-react";
 import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
 // import axios from "axios";
@@ -31,9 +31,11 @@ export default function Login() {
   const [checked, setChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [comparativeLogin, setComparativeLogin] = useState("");
-  // const [token, setToken] = useLocalStorage("tokenTormenta20", null);
-  const router = useRouter();
+
+  // const [token, setToken] = useLocalStorage("tokenBank", null);
+  // const router = useRouter();
 
   // useEffect(() => {
   //   if (token) {
@@ -79,7 +81,6 @@ export default function Login() {
       <MidWhiteBox>
         <Header>
           <LogoNG width={130} />
-         
           <TitleH1>NG CASH</TitleH1>
           <TextTitle textAlign={"center"}>
             Faça login e conheça a carteira digital da nova geração.
@@ -110,13 +111,24 @@ export default function Login() {
               style={{ position: "absolute", top: "39px", left: "10px" }}
             />
             <InputLogin
-              type="password"
+              type={showPassword ? "password" : "text"}
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Sua senha precisa conter pelo menos 8 caracteres, um número e uma letra maiúscula."
               required
+            />
+            <Eye
+              size={20}
+              color="#7c7c8a"
+              style={{
+                position: "absolute",
+                top: "42px",
+                right: "20px",
+                cursor: "pointer",
+              }}
+              onClick={() => setShowPassword(!showPassword)}
             />
           </InputAndTextDiv>
           <GroupCheckBoxAndButton>
