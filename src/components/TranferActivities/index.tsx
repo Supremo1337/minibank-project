@@ -21,7 +21,7 @@ export default function TransferActivities() {
   const [isSelected, setIsSelected] = useState(false);
   const [filter, setFilter] = useState<Props[]>([]);
 
-  const columns: Column<Props | undefined, string >[] = [
+  const columns: Column<Props | undefined, string>[] = [
     {
       cellClass: "cell-id",
       key: "id",
@@ -93,7 +93,6 @@ export default function TransferActivities() {
   }
 
   function checkSwitch(value: string) {
-    console.log(value, "VALUE");
     switch (value) {
       case "1":
         setIsSelected(false);
@@ -113,7 +112,6 @@ export default function TransferActivities() {
         break;
     }
   }
-  console.log(isSelected, "SELECTED");
   return (
     <Content>
       <Title fontSize="16px">Atividades de transferência</Title>

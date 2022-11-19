@@ -111,7 +111,7 @@ export default function Login() {
               style={{ position: "absolute", top: "39px", left: "10px" }}
             />
             <InputLogin
-              type={showPassword ? "password" : "text"}
+              type={showPassword ? "text" : "password"}
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}

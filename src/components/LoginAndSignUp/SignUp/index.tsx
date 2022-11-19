@@ -81,7 +81,7 @@ export default function SingUp() {
               style={{ position: "absolute", top: "36px", left: "10px" }}
             />
             <InputSignUp
-              type={showPassword ? "password" : "text"}
+              type={showPassword ? "text" : "password"}
               value={password}
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
@@ -109,7 +109,7 @@ export default function SingUp() {
               style={{ position: "absolute", top: "36px", left: "10px" }}
             />
             <InputSignUp
-              type={showConfirmPassword ? "password" : "text"}
+              type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               placeholder="********"
               onChange={(e) => setConfirmPassword(e.target.value)}
