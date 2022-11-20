@@ -133,7 +133,7 @@ export default function HandlingMoney({ username }: Props) {
       "http://localhost:3333/api/money/transfer",
       {
         username: tranferForUserInput,
-        amount: moneyWanTransfer,
+        amount: Number(moneyWanTransfer),
       },
       {
         headers: {

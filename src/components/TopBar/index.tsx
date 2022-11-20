@@ -10,7 +10,6 @@ import { SignOut, UserCircle } from "phosphor-react";
 import { InfoText } from "../../styles/global";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useLocalStorage from "use-local-storage";
 import axios from "axios";
 
 export default function Topbar() {

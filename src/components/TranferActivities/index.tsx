@@ -126,16 +126,15 @@ export default function TransferActivities() {
         break;
       case "3":
         setIsSelected(false);
-        setFilter(dataServer.filter((e) => e.id === "Cash-in"));
+        setFilter(dataServer.filter((e) => !e.isCashOut));
         break;
       case "4":
         setIsSelected(false);
-        setFilter(dataServer.filter((e) => e.id === "Cash-out"));
+        setFilter(dataServer.filter((e) => e.isCashOut));
         break;
     }
   }
-
-  console.log(checkSwitch);
+  
   return (
     <Content>
       <Title fontSize="16px">Atividades de transferência</Title>
