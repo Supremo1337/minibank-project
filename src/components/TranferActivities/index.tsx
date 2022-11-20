@@ -11,13 +11,21 @@ import {
 } from "./styles";
 import "react-data-grid/lib/styles.css";
 import DataGrid, { Column } from "react-data-grid";
-import { Props } from "./rows";
 import { IconAzul } from "../../../public/icon/IconAzul";
 import IconVerde from "../../../public/icon/iconVerde";
 import { CurrencyCircleDollar } from "phosphor-react";
 import useLocalStorage from "use-local-storage";
 import { useRouter } from "next/router";
 import axios from "axios";
+
+export interface Props {
+  id?: string;
+  isCashOut?: boolean;
+  titleValue?: string;
+  titleFrom?: string;
+  titlePara?: string;
+  titleDate?: string;
+}
 
 export default function TransferActivities() {
   const [dateInput, setDateInput] = useState("");

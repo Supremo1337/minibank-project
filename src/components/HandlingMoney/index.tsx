@@ -24,7 +24,7 @@ import Modal from "@mui/material/Modal";
 import { useMediaQuery } from "@mui/material";
 import axios from "axios";
 
-interface Props {
+interface ChildModalProps {
   handleSubmit: () => void;
   handleCloseFirstModal: () => void;
   username: string;
@@ -58,7 +58,7 @@ function ChildModal({
   handleSubmit,
   username,
   amount,
-}: Props) {
+}: ChildModalProps) {
   const matches = useMediaQuery("(min-width: 1024px)");
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 

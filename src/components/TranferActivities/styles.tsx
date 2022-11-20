@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Content = styled.div`
   width: 100%;
   height: auto;
-  /* background: #232343; */
   display: flex;
   flex-direction: column;
   margin-top: 32px;
@@ -18,16 +17,12 @@ export const Content = styled.div`
   }
 `;
 
-
 export const GroupFilterAndDataGrid = styled.div`
   width: 100%;
   height: auto;
-  /* background: green; */
   margin-top: 24px;
   @media (min-width: 1024px) {
     height: auto;
-    /* display: flex;
-    flex-direction: column; */
   }
 `;
 
@@ -36,12 +31,11 @@ export const Filter = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  /* background: blue; */
   @media (min-width: 1024px) {
     width: 90%;
     height: auto;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
   }
 `;
 export const FilterGroupTextAndInput = styled.div`
@@ -49,7 +43,6 @@ export const FilterGroupTextAndInput = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background: purple; */
   @media (min-width: 1024px) {
     width: 40%;
   }
@@ -76,6 +69,6 @@ export const SelectFilter = styled.select`
   @media (min-width: 1024px) {
     margin: 0;
     width: 80;
-    max-width: 305px; /*436px *305px; */
+    max-width: 305px;
   }
 `;

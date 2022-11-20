@@ -144,9 +144,7 @@ export default function Login() {
         <ForgetAndSignUpBox>
           <TextUnderlined>Esqueceu sua senha?</TextUnderlined>
           <Link href="./signup">
-            <TextUnderlined>
-              não possui conta? crie uma agora!
-            </TextUnderlined>
+            <TextUnderlined>não possui conta? crie uma agora!</TextUnderlined>
           </Link>
         </ForgetAndSignUpBox>
       </MidWhiteBox>
