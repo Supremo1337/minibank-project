@@ -8,6 +8,12 @@ interface LoginOrSingUpSubmitProps {
   mgt: string;
 }
 
+interface FormLoginOrSingUpProps {
+  height: string;
+  jt?: string;
+  gap?: string;
+}
+
 export const Content = styled.div`
   width: 100%;
   height: 100vh;
@@ -38,6 +44,15 @@ export const MidWhiteBox = styled.div`
   }
 `;
 
+export const TitleH1 = styled.div`
+  font-weight: bold;
+  font-size: 2.8rem;
+  @media (min-width: 720px) {
+    font-size: 3.2rem;
+    margin-top: 12px;
+  }
+`;
+
 export const Header = styled.div`
   width: 80%;
   height: 212px;
@@ -51,16 +66,21 @@ export const Header = styled.div`
   }
 `;
 
-export const TitleH1 = styled.div`
-  font-weight: bold;
-  font-size: 2.8rem;
+export const FormLoginOrSingUp = styled.form<FormLoginOrSingUpProps>`
+  width: 90%;
+  height: ${(props) => props.height};
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: stretch;
+  justify-content: ${(props) => props.jt};
+  gap: ${(props) => props.gap};
   @media (min-width: 720px) {
-    font-size: 3.2rem;
-    margin-top: 12px;
+    width: 448px;
   }
 `;
 
-export const InputAndTextDiv = styled.div`
+export const GroupOfText_Input_Icon = styled.div`
   width: 100%;
   height: 76px;
   display: flex;
@@ -104,5 +124,18 @@ export const LoginOrSingUpSubmit = styled.input<LoginOrSingUpSubmitProps>`
   cursor: pointer;
   :hover {
     background: #090808;
+  }
+`;
+
+export const TextUnderlined = styled.label`
+  font-size: 14px;
+  color: #2c2d30;
+  text-decoration: underline;
+  cursor: pointer;
+  @media (min-width: 720px) {
+    font-size: 14px;
+    color: #2c2d30;
+    text-decoration: underline;
+    cursor: pointer;
   }
 `;

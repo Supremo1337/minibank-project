@@ -25,14 +25,6 @@ export const TextTitle = styled.div<TextTitleProps>`
   text-align: ${(props) => props.textAlign};
 `;
 
-export const DivToPlaceInputAndButtonInRow = styled.div`
-  @media (min-width: 1024px) {
-    width: 100%;
-    display: flex;
-    /* background: green; */
-    justify-content: space-between;
-  }
-`;
 
 export const ButtonSendAndFilter = styled.button`
   width: 112px;

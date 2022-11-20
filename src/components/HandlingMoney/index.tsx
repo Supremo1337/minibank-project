@@ -2,18 +2,17 @@ import { EyeSlash } from "phosphor-react";
 import { useEffect, useState } from "react";
 import {
   ButtonSendAndFilter,
-  InfoText,
-  DivToPlaceInputAndButtonInRow,
   Title,
 } from "../../styles/global";
 import {
+  Content,
+  TransferBox,
   BalanceBox,
   BalanceTitleAndIconGroup,
-  BalanceInput,
   BalanceText,
-  Content,
   Transfer,
-  TransferBox,
+  DivToPlaceInputAndButtonInRow,
+  BalanceInput,
   TitleModal,
   SubTitleModal,
   ButtonsRowGroup,
@@ -22,14 +21,11 @@ import {
 } from "./styles";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import { Typography, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import axios from "axios";
-import useLocalStorage from "use-local-storage";
-import { useRouter } from "next/router";
 
 interface Props {
-  enviarForm: () => void;
+  handleSubmit: () => void;
   handleCloseFirstModal: () => void;
   username: string;
   amount: string;
@@ -59,51 +55,55 @@ function style(correctWidth: boolean) {
 
 function ChildModal({
   handleCloseFirstModal,
-  enviarForm,
+  handleSubmit,
   username,
   amount,
 }: Props) {
   const matches = useMediaQuery("(min-width: 1024px)");
-  const [open, setOpen] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
-  const handleOpen = async () => {
-    await enviarForm();
-    setOpen(true);
+  const handleOpenConfirmationModal = async () => {
+    await handleSubmit();
+    setOpenConfirmationModal(true);
   };
 
-  const handleClose = () => {
+  const handleCloseConfirmationModal = () => {
     handleCloseFirstModal();
-    setOpen(false);
+    setOpenConfirmationModal(false);
   };
 
   return (
     <>
       <ButtonsRowGroup>
-        <YesSendButton onClick={handleOpen}>Sim, enviar</YesSendButton>
+        <YesSendButton onClick={handleOpenConfirmationModal}>
+          Sim, enviar
+        </YesSendButton>
         <NoSendButton onClick={handleCloseFirstModal}>Não, voltar</NoSendButton>
       </ButtonsRowGroup>
       <Modal
         hideBackdrop
-        open={open}
-        onClose={handleClose}
+        open={openConfirmationModal}
+        onClose={handleCloseConfirmationModal}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style(matches) }}>
-          <TitleModal>Sucesso</TitleModal>
+          <TitleModal>Transação concluída!</TitleModal>
           <SubTitleModal>
             <span>
               Enviou $ {amount} para {username}
             </span>
           </SubTitleModal>
-          <NoSendButton onClick={handleClose}>Fechar</NoSendButton>
+          <NoSendButton onClick={handleCloseConfirmationModal}>
+            Fechar
+          </NoSendButton>
         </Box>
       </Modal>
     </>
   );
 }
 
-export default function HandlingMoney({ username }: Props) {
+export default function HandlingMoney() {
   const matches = useMediaQuery("(min-width: 1024px)");
   const [money, setMoney] = useState("");
   const [show, setShow] = useState(true);
@@ -121,14 +121,13 @@ export default function HandlingMoney({ username }: Props) {
       })
       .then((res) => {
         setMoney(res.data.user.account.balance);
-        // setTranferForUserInput(res.data.)
       })
       .catch((error) => {
         console.log("ERRO AQ", error);
       });
   }, []);
 
-  const enviarRequest = async () => {
+  const sendRequest = async () => {
     const res = await axios.post(
       "http://localhost:3333/api/money/transfer",
       {
@@ -142,7 +141,7 @@ export default function HandlingMoney({ username }: Props) {
         },
       }
     );
-    console.log("enviarRequest", res.data);
+    console.log("sendRequest", res.data);
   };
 
   const handleOpen = () => {
@@ -156,22 +155,16 @@ export default function HandlingMoney({ username }: Props) {
     <Content>
       <TransferBox>
         <BalanceBox>
-          <>
-            {/* {console.log("INFOS AQ", infos)} */}
             <BalanceTitleAndIconGroup>
               <Title fontSize="1.6rem">Balance</Title>
-              <button
+              <EyeSlash
                 onClick={() => setShow(!show)}
-                style={{
-                  background: "none",
-                  border: "none",
-                }}
-              >
-                <EyeSlash size={16} color="#ffffff" cursor={"pointer"} />
-              </button>
+                size={16}
+                color="#ffffff"
+                cursor={"pointer"}
+              />
             </BalanceTitleAndIconGroup>
-            <BalanceText>{show ? `$ ${money}` : "$ --"}</BalanceText>
-          </>
+            <BalanceText>{show ? `R$ ${money}` : "R$ --"}</BalanceText>
         </BalanceBox>
         <Transfer>
           <Title fontSize="1.6rem" mgb="4px">
@@ -215,8 +208,8 @@ export default function HandlingMoney({ username }: Props) {
                 <ChildModal
                   amount={moneyWanTransfer}
                   username={tranferForUserInput}
-                  enviarForm={async () => {
-                    await enviarRequest();
+                  handleSubmit={async () => {
+                    await sendRequest();
                   }}
                   handleCloseFirstModal={() => setOpen(false)}
                 />

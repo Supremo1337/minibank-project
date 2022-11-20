@@ -27,27 +27,6 @@ export const Content = styled.div`
   }
 `;
 
-export const BalanceBox = styled.div`
-  width: auto;
-  height: 70px;
-  /* background: blue; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const BalanceText = styled.label`
-  font-size: 3.6rem;
-  color: #d2d2d2;
-`;
-
-export const BalanceTitleAndIconGroup = styled.div`
-  width: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const TransferBox = styled.div`
   width: 100%;
   height: 480px;
@@ -63,6 +42,27 @@ export const TransferBox = styled.div`
   }
 `;
 
+export const BalanceBox = styled.div`
+  width: auto;
+  height: 70px;
+  /* background: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const BalanceTitleAndIconGroup = styled.div`
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BalanceText = styled.label`
+  font-size: 3.6rem;
+  color: #d2d2d2;
+`;
+
 export const Transfer = styled.div`
   width: 100%;
   height: auto;
@@ -71,6 +71,15 @@ export const Transfer = styled.div`
   @media (min-width: 1024px) {
     width: 80%;
     max-width: 775px;
+  }
+`;
+
+export const DivToPlaceInputAndButtonInRow = styled.div`
+  @media (min-width: 1024px) {
+    width: 100%;
+    display: flex;
+    /* background: green; */
+    justify-content: space-between;
   }
 `;
 
@@ -84,23 +93,13 @@ export const BalanceInput = styled.input<BalanceInputProps>`
   outline: none;
   padding-left: 18px;
   margin: ${(props) => props.mg};
-  /* display: ${(props) => (props.title ? "Selecione um filtro" : "none")}; */
   ::placeholder {
     color: #fff;
   }
   @media (min-width: 1024px) {
     margin: 0;
     width: ${(props) => props.widthLaptop};
-    max-width: ${(props) => props.maxWidth}; /*436px *305px; */
-  }
-`;
-
-export const DivPlaceFilterInline = styled.div`
-  @media (min-width: 1024px) {
-    /* background: pink; */
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    max-width: ${(props) => props.maxWidth};
   }
 `;
 

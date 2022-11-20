@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ForgetAndLoginBox,
-  FormLogin,
-  GroupCheckBoxAndButton,
-  TextForgetAndLogin,
-} from "./styles";
+import { ForgetAndSignUpBox, GroupCheckBoxAndButton } from "./styles";
 import {
   CheckboxContainer,
   HiddenCheckbox,
@@ -15,11 +10,13 @@ import { TextTitle } from "../../../styles/global";
 import {
   Content,
   Header,
-  InputAndTextDiv,
+  GroupOfText_Input_Icon,
   InputLoginOrSingUp as InputLogin,
   LoginOrSingUpSubmit as LoginSubmit,
   MidWhiteBox,
   TitleH1,
+  FormLoginOrSingUp,
+  TextUnderlined,
 } from "../stylesLoginAndSingUp";
 import { Envelope, Eye, Lock } from "phosphor-react";
 import LogoNG from "../../../../public/icon/LogoNG";
@@ -33,15 +30,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [comparativeLogin, setComparativeLogin] = useState("");
-
-  // const [token, setToken] = useLocalStorage("tokenBank", null);
   const router = useRouter();
-
-  // useEffect(() => {
-  //   if (token) {
-  //     router.push("/mainpage");
-  //   }
-  // }, [token]);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     console.log("ENTROU AQ");
@@ -53,7 +42,6 @@ export default function Login() {
       })
       .then((res) => {
         if (!res.data.token) return;
-        // setToken(res.data.token);
         localStorage.setItem("tokenBank", res.data.token);
         router.push("/mainpage");
         console.log("ESSE É O RES", res);
@@ -63,10 +51,6 @@ export default function Login() {
         setComparativeLogin(error.response);
       });
   };
-
-  function validateForm() {
-    return username.length > 0 && password.length > 0;
-  }
 
   function handleCheckboxChange() {
     setChecked(!checked);
@@ -82,8 +66,12 @@ export default function Login() {
             Faça login e conheça a carteira digital da nova geração.
           </TextTitle>
         </Header>
-        <FormLogin onSubmit={handleSubmit}>
-          <InputAndTextDiv>
+        <FormLoginOrSingUp
+          height={"290px"}
+          jt={"space-between"}
+          onSubmit={handleSubmit}
+        >
+          <GroupOfText_Input_Icon>
             <TextTitle>Seu nome de Usuário</TextTitle>
             <Envelope
               size={24}
@@ -98,8 +86,8 @@ export default function Login() {
               minLength={3}
               required
             />
-          </InputAndTextDiv>
-          <InputAndTextDiv>
+          </GroupOfText_Input_Icon>
+          <GroupOfText_Input_Icon>
             <TextTitle>Insira sua Senha</TextTitle>
             <Lock
               size={24}
@@ -126,7 +114,7 @@ export default function Login() {
               }}
               onClick={() => setShowPassword(!showPassword)}
             />
-          </InputAndTextDiv>
+          </GroupOfText_Input_Icon>
           <GroupCheckBoxAndButton>
             <CheckboxContainer checked={checked} onClick={handleCheckboxChange}>
               <HiddenCheckbox
@@ -152,15 +140,15 @@ export default function Login() {
               />
             </a>
           </GroupCheckBoxAndButton>
-        </FormLogin>
-        <ForgetAndLoginBox>
-          <TextForgetAndLogin>Esqueceu sua senha?</TextForgetAndLogin>
+        </FormLoginOrSingUp>
+        <ForgetAndSignUpBox>
+          <TextUnderlined>Esqueceu sua senha?</TextUnderlined>
           <Link href="./signup">
-            <TextForgetAndLogin>
+            <TextUnderlined>
               não possui conta? crie uma agora!
-            </TextForgetAndLogin>
+            </TextUnderlined>
           </Link>
-        </ForgetAndLoginBox>
+        </ForgetAndSignUpBox>
       </MidWhiteBox>
     </Content>
   );
