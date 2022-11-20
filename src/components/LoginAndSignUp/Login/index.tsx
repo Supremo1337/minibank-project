@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ForgetAndLoginBox,
   FormLogin,
@@ -24,8 +24,8 @@ import {
 import { Envelope, Eye, Lock } from "phosphor-react";
 import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
-// import axios from "axios";
-// import useLocalStorage from "use-local-storage";
+import axios from "axios";
+import useLocalStorage from "use-local-storage";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
@@ -35,42 +35,38 @@ export default function Login() {
   const [comparativeLogin, setComparativeLogin] = useState("");
 
   // const [token, setToken] = useLocalStorage("tokenBank", null);
-  // const router = useRouter();
+  const router = useRouter();
 
   // useEffect(() => {
   //   if (token) {
-  //     router.push("/ficha");
+  //     router.push("/mainpage");
   //   }
   // }, [token]);
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const jsonLogin = { username, password };
-  //   const res = axios
-  //     .post("http://localhost:8000/api/authme/authenticate", jsonLogin, {
-  //       headers: { "Content-Type": "application/json" },
-  //     })
-  //     .then((res) => {
-  //       if (!res.data.token) return;
-  //       setToken(res.data.token);
-  //       console.log("ESSE É O RES", res);
-  //     })
-  //     .catch((error) => {
-  //       console.log("ERRO AQ", error);
-  //       setComparativeLogin(error.response);
-  //     });
-  //   console.log("RESDATA AQ", res.data);
-  // };
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    console.log("ENTROU AQ");
+    event.preventDefault();
+    const jsonLogin = { username, password };
+    const res = axios
+      .post("http://localhost:3333/api/authme/authenticate", jsonLogin, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        if (!res.data.token) return;
+        // setToken(res.data.token);
+        localStorage.setItem("tokenBank", res.data.token);
+        router.push("/mainpage");
+        console.log("ESSE É O RES", res);
+      })
+      .catch((error) => {
+        console.log("ERRO AQ", error);
+        setComparativeLogin(error.response);
+      });
+  };
 
   function validateForm() {
     return username.length > 0 && password.length > 0;
   }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   console.log("CONSOLE DENTRO DO HANDLE SUBMIT", event);
-  //   const teste = (e, id) => {};
-  // }
 
   function handleCheckboxChange() {
     setChecked(!checked);
@@ -86,7 +82,7 @@ export default function Login() {
             Faça login e conheça a carteira digital da nova geração.
           </TextTitle>
         </Header>
-        <FormLogin>
+        <FormLogin onSubmit={handleSubmit}>
           <InputAndTextDiv>
             <TextTitle>Seu nome de Usuário</TextTitle>
             <Envelope
@@ -159,9 +155,11 @@ export default function Login() {
         </FormLogin>
         <ForgetAndLoginBox>
           <TextForgetAndLogin>Esqueceu sua senha?</TextForgetAndLogin>
-          <TextForgetAndLogin>
-            não possui conta? crie uma agora!
-          </TextForgetAndLogin>
+          <Link href="./signup">
+            <TextForgetAndLogin>
+              não possui conta? crie uma agora!
+            </TextForgetAndLogin>
+          </Link>
         </ForgetAndLoginBox>
       </MidWhiteBox>
     </Content>

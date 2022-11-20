@@ -13,10 +13,10 @@ import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
 import { Envelope, Eye, Lock } from "phosphor-react";
 import { FormSingUp } from "./styles";
-// import axios from "axios";
+import axios from "axios";
 
 export default function SingUp() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,26 +25,30 @@ export default function SingUp() {
   const [second, setSecond] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return username.length > 0 && password.length > 0;
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   console.log(email);
-  //   console.log(password);
-  //   const jsonSingUp = { email, password, confirmPassword };
-  //   axios
-  //     .post("http://localhost:8000/api/authme/register", JSON.stringify(jsonSingUp), {
-  //       headers: { "Content-Type": "application/json" },
-  //     })
-  //     .then((res) => {
-  //       window.location.href = "/";
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setComparativeSingUp(error);
-  //     });
-  // }
+  function handleSubmit(event: { preventDefault: () => void }) {
+    event.preventDefault();
+    console.log(username);
+    console.log(password);
+    const jsonSingUp = { username, password, confirmPassword };
+    axios
+      .post(
+        "http://localhost:3333/api/authme/register",
+        JSON.stringify(jsonSingUp),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => {
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.log(error);
+        setComparativeSingUp(error);
+      });
+  }
 
   return (
     <Content>
@@ -56,7 +60,7 @@ export default function SingUp() {
             Crie sua conta e conheça a carteira digital da nova geração
           </TextTitle>
         </Header>
-        <FormSingUp>
+        <FormSingUp onSubmit={handleSubmit}>
           <InputAndTextDiv>
             <TextTitle>Seu nome de Usuário</TextTitle>
             <Envelope
@@ -66,9 +70,9 @@ export default function SingUp() {
             />
             <InputSignUp
               autoFocus
-              value={email}
+              value={username}
               placeholder="johndoe@gmail.com"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               minLength={3}
               required
             />

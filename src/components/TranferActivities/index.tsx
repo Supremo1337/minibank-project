@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ButtonSendAndFilter, InfoText, Title } from "../../styles/global";
 import { BalanceInput } from "../HandlingMoney/styles";
 import {
@@ -15,11 +15,42 @@ import { Props, rows } from "./rows";
 import { IconAzul } from "../../../public/icon/IconAzul";
 import IconVerde from "../../../public/icon/iconVerde";
 import { CurrencyCircleDollar } from "phosphor-react";
+import useLocalStorage from "use-local-storage";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function TransferActivities() {
   const [dateInput, setDateInput] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [filter, setFilter] = useState<Props[]>([]);
+  const [show, setShow] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [infos, setInfos] = useState();
+
+  // const [token, setToken] = useLocalStorage("tokenBank", null);
+  const router = useRouter();
+  // useEffect(() => {
+  //   if (!token) {
+  //     router.push("/");
+  //   }
+  // }, [token]);
+
+  useEffect(() => {
+    const res = axios
+      .get("http://localhost:3333/api/authme/user/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: 'Bearer ' + localStorage.getItem('tokenBank')
+        },
+      })
+      .then((res) => {
+        setInfos(res.data);
+        // setToken(res.data.token);
+      })
+      .catch((error) => {
+        console.log("ERRO AQ", error);
+      });
+  }, []);
 
   const columns: Column<Props | undefined, string>[] = [
     {

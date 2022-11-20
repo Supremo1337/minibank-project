@@ -50,10 +50,3 @@ export const UserPerfil = styled.div`
   align-items: center;
   justify-content: space-around;
 `;
-
-export const UserPhoto = styled.div`
-  background-image: url("/img/user.png");
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-`;

@@ -1,5 +1,5 @@
 import { EyeSlash } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ButtonSendAndFilter,
   InfoText,
@@ -24,6 +24,9 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { Typography, useMediaQuery } from "@mui/material";
+import axios from "axios";
+import useLocalStorage from "use-local-storage";
+import { useRouter } from "next/router";
 
 interface Props {
   handleCloseFirstModal: () => void;
@@ -94,9 +97,28 @@ function ChildModal({ handleCloseFirstModal }: Props) {
 
 export default function HandlingMoney() {
   const matches = useMediaQuery("(min-width: 1024px)");
-  const [money, setMoney] = useState("$ 100,00");
+  const [money, setMoney] = useState("");
   const [show, setShow] = useState(true);
   const [open, setOpen] = useState(false);
+  const [tranferForUserInput, setTranferForUserInput] = useState();
+
+  useEffect(() => {
+    const res = axios
+      .get("http://localhost:3333/api/authme/user", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("tokenBank"),
+        },
+      })
+      .then((res) => {
+        setMoney(res.data.user.account.balance);
+        // setTranferForUserInput(res.data.)
+      })
+      .catch((error) => {
+        console.log("ERRO AQ", error);
+      });
+  }, []);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -108,19 +130,22 @@ export default function HandlingMoney() {
     <Content>
       <TransferBox>
         <BalanceBox>
-          <BalanceTitleAndIconGroup>
-            <Title fontSize="1.6rem">Balance</Title>
-            <button
-              onClick={() => setShow(!show)}
-              style={{
-                background: "none",
-                border: "none",
-              }}
-            >
-              <EyeSlash size={16} color="#ffffff" cursor={"pointer"} />
-            </button>
-          </BalanceTitleAndIconGroup>
-          <BalanceText>{show ? money : "$ --"}</BalanceText>
+          <>
+            {/* {console.log("INFOS AQ", infos)} */}
+            <BalanceTitleAndIconGroup>
+              <Title fontSize="1.6rem">Balance</Title>
+              <button
+                onClick={() => setShow(!show)}
+                style={{
+                  background: "none",
+                  border: "none",
+                }}
+              >
+                <EyeSlash size={16} color="#ffffff" cursor={"pointer"} />
+              </button>
+            </BalanceTitleAndIconGroup>
+            <BalanceText>{show ? `$ ${money}` : "$ --"}</BalanceText>
+          </>
         </BalanceBox>
         <Transfer>
           <Title fontSize="1.6rem" mgb="4px">
