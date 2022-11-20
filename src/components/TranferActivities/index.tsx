@@ -11,7 +11,7 @@ import {
 } from "./styles";
 import "react-data-grid/lib/styles.css";
 import DataGrid, { Column } from "react-data-grid";
-import { Props, rows } from "./rows";
+import { Props } from "./rows";
 import { IconAzul } from "../../../public/icon/IconAzul";
 import IconVerde from "../../../public/icon/iconVerde";
 import { CurrencyCircleDollar } from "phosphor-react";
@@ -19,33 +19,42 @@ import useLocalStorage from "use-local-storage";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-export default function TransferActivities() {
+export default function TransferActivities({ isCashOut }: Props) {
   const [dateInput, setDateInput] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [filter, setFilter] = useState<Props[]>([]);
-  const [show, setShow] = useState(true);
-  const [open, setOpen] = useState(false);
-  const [infos, setInfos] = useState();
+  const [dataServer, setDataServer] = useState<Props[]>([]);
 
-  // const [token, setToken] = useLocalStorage("tokenBank", null);
+  const [value, setValue] = useState();
+  const [createdAt, setCreatedAt] = useState();
+  const [creditedAccountId, setcreditedAccountId] = useState();
+  const [debitedAccountId, setDebitedAccountId] = useState();
+
   const router = useRouter();
-  // useEffect(() => {
-  //   if (!token) {
-  //     router.push("/");
-  //   }
-  // }, [token]);
 
   useEffect(() => {
     const res = axios
-      .get("http://localhost:3333/api/authme/user/", {
+      .get("http://localhost:3333/api/money/transactions", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: 'Bearer ' + localStorage.getItem('tokenBank')
+          Authorization: "Bearer " + localStorage.getItem("tokenBank"),
         },
       })
       .then((res) => {
-        setInfos(res.data);
-        // setToken(res.data.token);
+        setDataServer(
+          res.data.transactions.map((row: any) => {
+            return {
+              id: row.id,
+              isCashOut: row.debitedAccountId === res.data.accountId,
+              titleValue: row.value,
+              titleFrom: row.debitedAccount.user.username,
+              titlePara: row.creditedAccount.user.username,
+              titleDate: new Date(row.createdAt).toLocaleDateString("pt-BR", {
+                timeZone: "UTC",
+              }),
+            };
+          })
+        );
       })
       .catch((error) => {
         console.log("ERRO AQ", error);
@@ -55,20 +64,16 @@ export default function TransferActivities() {
   const columns: Column<Props | undefined, string>[] = [
     {
       cellClass: "cell-id",
-      key: "id",
+      key: "isCashOut",
       name: "Evento",
       formatter(props) {
         return (
           <>
             <span className="cell-id-icon">
-              {(props.row as any).id.indexOf("Cash-in") ? (
-                <IconAzul />
-              ) : (
-                <IconVerde />
-              )}
+              {props.row?.isCashOut ? <IconAzul /> : <IconVerde />}
             </span>
 
-            {props.row?.id}
+            {props.row?.isCashOut ? "Cash-out" : "Cash-in"}
           </>
         );
       },
@@ -81,14 +86,14 @@ export default function TransferActivities() {
         return (
           <>
             <span className="cell-id-icon">
-              {(props.row as any).id.indexOf("Cash-in") ? (
+              {props.row?.isCashOut ? (
                 <CurrencyCircleDollar size={24} color="#a31541" />
               ) : (
                 <CurrencyCircleDollar size={24} color="#06d186" />
               )}
             </span>
 
-            {(props.row as any).titleValue}
+            {props.row?.isCashOut ? "Cash-out" : "Cash-in"}
           </>
         );
       },
@@ -100,49 +105,42 @@ export default function TransferActivities() {
 
   useMemo(() => {
     if (!dateInput) {
-      setFilter([...rows]);
+      setFilter([...dataServer]);
     }
-  }, [dateInput]);
+  }, [dateInput, dataServer]);
 
   function filterButton() {
-    const data = rows.filter((value) => value.titleDate === dateInput);
-    setFilter(data);
-  }
-
-  function convertDate() {
-    const filterMap = filter.map((row: Props) => {
-      if (row.titleDate) {
-        return {
-          ...row,
-          titleDate: new Date(row.titleDate!).toLocaleDateString("pt-BR", {
-            timeZone: "UTC",
-          }),
-        };
-      }
+    const data = dataServer.filter((value) => {
+      const dateFormated = new Date(dateInput).toLocaleDateString("pt-BR", {
+        timeZone: "UTC",
+      });
+      return value.titleDate === dateFormated;
     });
-    return filterMap;
+    setFilter(data);
   }
 
   function checkSwitch(value: string) {
     switch (value) {
       case "1":
         setIsSelected(false);
-        setFilter(rows);
+        setFilter(dataServer);
         break;
       case "2":
         setIsSelected(true);
-        setFilter(rows);
+        setFilter(dataServer);
         break;
       case "3":
         setIsSelected(false);
-        setFilter(rows.filter((e) => e.id === "Cash-in"));
+        setFilter(dataServer.filter((e) => e.id === "Cash-in"));
         break;
       case "4":
         setIsSelected(false);
-        setFilter(rows.filter((e) => e.id === "Cash-out"));
+        setFilter(dataServer.filter((e) => e.id === "Cash-out"));
         break;
     }
   }
+
+  console.log(dateInput);
   return (
     <Content>
       <Title fontSize="16px">Atividades de transferência</Title>
@@ -176,7 +174,6 @@ export default function TransferActivities() {
                 width="100%"
                 widthLaptop="42%"
                 maxWidth="436px"
-                placeholder="12/11/2022"
                 type={"date"}
                 value={dateInput}
                 onChange={(e) => setDateInput(e.target.value)}
@@ -187,7 +184,7 @@ export default function TransferActivities() {
             </>
           )}
         </Filter>
-        <DataGrid columns={columns} rows={convertDate()} />
+        <DataGrid columns={columns} rows={filter} />
       </GroupFilterAndDataGrid>
     </Content>
   );

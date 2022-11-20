@@ -29,7 +29,10 @@ import useLocalStorage from "use-local-storage";
 import { useRouter } from "next/router";
 
 interface Props {
+  enviarForm: () => void;
   handleCloseFirstModal: () => void;
+  username: string;
+  amount: string;
 }
 
 function style(correctWidth: boolean) {
@@ -54,11 +57,17 @@ function style(correctWidth: boolean) {
   };
 }
 
-function ChildModal({ handleCloseFirstModal }: Props) {
+function ChildModal({
+  handleCloseFirstModal,
+  enviarForm,
+  username,
+  amount,
+}: Props) {
   const matches = useMediaQuery("(min-width: 1024px)");
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = async () => {
+    await enviarForm();
     setOpen(true);
   };
 
@@ -81,12 +90,11 @@ function ChildModal({ handleCloseFirstModal }: Props) {
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style(matches) }}>
-          <TitleModal>
-            Tem certeza que deseja <br />
-            fazer essa transição
-          </TitleModal>
+          <TitleModal>Sucesso</TitleModal>
           <SubTitleModal>
-            <span>Enviou $ 500 para Usuário001</span>
+            <span>
+              Enviou $ {amount} para {username}
+            </span>
           </SubTitleModal>
           <NoSendButton onClick={handleClose}>Fechar</NoSendButton>
         </Box>
@@ -95,12 +103,13 @@ function ChildModal({ handleCloseFirstModal }: Props) {
   );
 }
 
-export default function HandlingMoney() {
+export default function HandlingMoney({ username }: Props) {
   const matches = useMediaQuery("(min-width: 1024px)");
   const [money, setMoney] = useState("");
   const [show, setShow] = useState(true);
   const [open, setOpen] = useState(false);
-  const [tranferForUserInput, setTranferForUserInput] = useState();
+  const [tranferForUserInput, setTranferForUserInput] = useState("");
+  const [moneyWanTransfer, setMoneyWanTransfer] = useState("");
 
   useEffect(() => {
     const res = axios
@@ -118,6 +127,23 @@ export default function HandlingMoney() {
         console.log("ERRO AQ", error);
       });
   }, []);
+
+  const enviarRequest = async () => {
+    const res = await axios.post(
+      "http://localhost:3333/api/money/transfer",
+      {
+        username: tranferForUserInput,
+        amount: moneyWanTransfer,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("tokenBank"),
+        },
+      }
+    );
+    console.log("enviarRequest", res.data);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -158,6 +184,7 @@ export default function HandlingMoney() {
               widthLaptop="50%"
               placeholder="Insira o usuário de destino"
               maxWidth="400px"
+              onChange={(e) => setTranferForUserInput(e.target.value)}
             />
             <BalanceInput
               mg="12px 0 22px 0"
@@ -165,6 +192,7 @@ export default function HandlingMoney() {
               widthLaptop="30%"
               placeholder="Insira o valor"
               maxWidth="200px"
+              onChange={(e) => setMoneyWanTransfer(e.target.value)}
             />
             <ButtonSendAndFilter onClick={handleOpen}>
               Enviar
@@ -181,9 +209,17 @@ export default function HandlingMoney() {
                   fazer essa transição
                 </TitleModal>
                 <SubTitleModal>
-                  Enviar $ 500 para <span>Usuário001</span>
+                  Enviar $ {moneyWanTransfer} para{" "}
+                  <span>{tranferForUserInput}</span>
                 </SubTitleModal>
-                <ChildModal handleCloseFirstModal={() => setOpen(false)} />
+                <ChildModal
+                  amount={moneyWanTransfer}
+                  username={tranferForUserInput}
+                  enviarForm={async () => {
+                    await enviarRequest();
+                  }}
+                  handleCloseFirstModal={() => setOpen(false)}
+                />
               </Box>
             </Modal>
           </DivToPlaceInputAndButtonInRow>
