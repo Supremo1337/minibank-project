@@ -19,16 +19,11 @@ import useLocalStorage from "use-local-storage";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-export default function TransferActivities({ isCashOut }: Props) {
+export default function TransferActivities() {
   const [dateInput, setDateInput] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [filter, setFilter] = useState<Props[]>([]);
   const [dataServer, setDataServer] = useState<Props[]>([]);
-
-  const [value, setValue] = useState();
-  const [createdAt, setCreatedAt] = useState();
-  const [creditedAccountId, setcreditedAccountId] = useState();
-  const [debitedAccountId, setDebitedAccountId] = useState();
 
   const router = useRouter();
 
@@ -93,7 +88,7 @@ export default function TransferActivities({ isCashOut }: Props) {
               )}
             </span>
 
-            {props.row?.isCashOut ? "Cash-out" : "Cash-in"}
+            {(props.row as any).titleValue}
           </>
         );
       },
@@ -140,7 +135,7 @@ export default function TransferActivities({ isCashOut }: Props) {
     }
   }
 
-  console.log(dateInput);
+  console.log(checkSwitch);
   return (
     <Content>
       <Title fontSize="16px">Atividades de transferência</Title>

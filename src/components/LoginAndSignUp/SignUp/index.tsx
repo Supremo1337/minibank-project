@@ -71,7 +71,7 @@ export default function SingUp() {
             <InputSignUp
               autoFocus
               value={username}
-              placeholder="johndoe@gmail.com"
+              placeholder="Seu Username (mínimo de 3 caracteres)"
               onChange={(e) => setUsername(e.target.value)}
               minLength={3}
               required
