@@ -11,7 +11,6 @@ export const CheckboxContainer = styled.div<CheckboxProps>`
   align-items: center;
   width: 100%;
   user-select: none;
-  /* background: red; */
   @media (min-width: 1024px) {
     width: 60%;
   }

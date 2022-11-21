@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const GroupCheckBoxAndButton = styled.div`
   width: 100%;
   height: 106px;
-  /* background: yellow; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,6 +19,5 @@ export const ForgetAndSignUpBox = styled.div`
   justify-content: space-between;
   @media (min-width: 720px) {
     width: 60%;
-    /* background: red; */
   }
 `;

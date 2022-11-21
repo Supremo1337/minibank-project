@@ -20,7 +20,8 @@ export const Content = styled.div`
 export const GroupFilterAndDataGrid = styled.div`
   width: 100%;
   height: auto;
-  margin-top: 24px;
+  display: flex;
+  flex-direction:column;
   @media (min-width: 1024px) {
     height: auto;
   }
@@ -31,6 +32,7 @@ export const Filter = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 28px;
   @media (min-width: 1024px) {
     width: 90%;
     height: auto;

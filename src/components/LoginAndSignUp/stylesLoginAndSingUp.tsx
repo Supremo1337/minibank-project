@@ -87,7 +87,6 @@ export const GroupOfText_Input_Icon = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  /* background: pink; */
 `;
 
 export const InputLoginOrSingUp = styled.input<InputLoginProps>`

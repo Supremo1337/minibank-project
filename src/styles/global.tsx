@@ -10,12 +10,12 @@ interface TextTitleProps {
 }
 
 export const InfoText = styled.label<InfoTextProps>`
-  font-size: ${(props) => props.fontSize}; /*  16 ou 18 */
+  font-size: ${(props) => props.fontSize};
   color: #fff;
 `;
 
 export const Title = styled.label<InfoTextProps>`
-  font-size: ${(props) => props.fontSize}; /*  16 ou 18 */
+  font-size: ${(props) => props.fontSize};
   color: #a8aeba;
   margin-bottom: ${(props) => props.mgb};
 `;

@@ -9,12 +9,11 @@ interface BalanceInputProps {
 
 export const Content = styled.div`
   width: 100%;
-  height: 290px;
+  height: 330px;
   display: flex;
   margin-top: 32px;
   padding: 0px 22px;
   flex-direction: column;
-  /* background: red; */
   @media (min-width: 1024px) {
     width: 100%;
     flex-direction: row;
@@ -30,7 +29,6 @@ export const Content = styled.div`
 export const TransferBox = styled.div`
   width: 100%;
   height: 480px;
-  /* background: pink; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,8 +42,7 @@ export const TransferBox = styled.div`
 
 export const BalanceBox = styled.div`
   width: auto;
-  height: 70px;
-  /* background: blue; */
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,7 +75,6 @@ export const DivToPlaceInputAndButtonInRow = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
     display: flex;
-    /* background: green; */
     justify-content: space-between;
   }
 `;
@@ -126,7 +122,6 @@ export const ButtonsRowGroup = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  /* background: #06d186; */
   align-items: center;
   justify-content: center;
   gap: 20px;

@@ -32,6 +32,13 @@ export default function Login() {
   const [comparativeLogin, setComparativeLogin] = useState("");
   const router = useRouter();
 
+  useEffect(() => {
+    const checkToken = localStorage.getItem("tokenBank");
+    if (checkToken) {
+      router.push("/mainpage");
+    }
+  }, []);
+
   const handleSubmit = (event: { preventDefault: () => void }) => {
     console.log("ENTROU AQ");
     event.preventDefault();

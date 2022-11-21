@@ -145,7 +145,6 @@ export default function TransferActivities() {
   
   return (
     <Content>
-      <Title fontSize="16px">Atividades de transferência</Title>
       <GroupFilterAndDataGrid>
         <Filter>
           <FilterGroupTextAndInput>
@@ -186,6 +185,7 @@ export default function TransferActivities() {
             </>
           )}
         </Filter>
+      <Title fontSize="16px">Atividades de transferência</Title>
         <DataGrid columns={columns} rows={filter} />
       </GroupFilterAndDataGrid>
     </Content>
