@@ -1,9 +1,6 @@
 import { EyeSlash } from "phosphor-react";
 import { useEffect, useState } from "react";
-import {
-  ButtonSendAndFilter,
-  Title,
-} from "../../styles/global";
+import { ButtonSendAndFilter, Title } from "../../styles/global";
 import {
   Content,
   TransferBox,
@@ -155,16 +152,17 @@ export default function HandlingMoney() {
     <Content>
       <TransferBox>
         <BalanceBox>
-            <BalanceTitleAndIconGroup>
-              <Title fontSize="1.6rem">Balance</Title>
-              <EyeSlash
-                onClick={() => setShow(!show)}
-                size={16}
-                color="#ffffff"
-                cursor={"pointer"}
-              />
-            </BalanceTitleAndIconGroup>
-            <BalanceText>{show ? `R$ ${money}` : "R$ --"}</BalanceText>
+          <BalanceTitleAndIconGroup>
+            <Title fontSize="1.6rem">Balance</Title>
+            <EyeSlash
+              onClick={() => setShow(!show)}
+              size={16}
+              color="#ffffff"
+              cursor={"pointer"}
+              style={{ userSelect: "none" }}
+            />
+          </BalanceTitleAndIconGroup>
+          <BalanceText>{show ? `R$ ${money}` : "R$ --"}</BalanceText>
         </BalanceBox>
         <Transfer>
           <Title fontSize="1.6rem" mgb="4px">

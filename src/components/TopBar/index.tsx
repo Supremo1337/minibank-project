@@ -16,6 +16,7 @@ export default function Topbar() {
   const [username, setUsername] = useState();
 
   const router = useRouter();
+  
   const logOut = () => {
     localStorage.removeItem("tokenBank");
     router.push("/");
