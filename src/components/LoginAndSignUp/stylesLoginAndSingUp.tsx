@@ -17,7 +17,6 @@ interface FormLoginOrSingUpProps {
 export const Content = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url("/img/bannerngcash.jpg");
   display: flex;
   background-size: cover;
   background-repeat: no-repeat;

@@ -5,7 +5,6 @@ import {
   LogOut,
   IconAndLogOutButtonGrouping,
 } from "./styles";
-import LogoNGPorExtenso from "../../../public/icon/LogoNGPorExtenso";
 import { SignOut, UserCircle } from "phosphor-react";
 import { InfoText } from "../../styles/global";
 import { useEffect, useState } from "react";
@@ -40,7 +39,6 @@ export default function Topbar() {
 
   return (
     <Content>
-      <LogoNGPorExtenso />
       <GroupPerfilAndLogOut>
         <UserPerfil>
           <InfoText fontSize="1.6rem">{username}</InfoText>

@@ -19,7 +19,6 @@ import {
   TextUnderlined,
 } from "../stylesLoginAndSingUp";
 import { Envelope, Eye, Lock } from "phosphor-react";
-import LogoNG from "../../../../public/icon/LogoNG";
 import Link from "next/link";
 import axios from "axios";
 import useLocalStorage from "use-local-storage";
@@ -67,8 +66,7 @@ export default function Login() {
     <Content>
       <MidWhiteBox>
         <Header>
-          <LogoNG width={130} />
-          <TitleH1>NG CASH</TitleH1>
+          <TitleH1>Mini Bank</TitleH1>
           <TextTitle textAlign={"center"}>
             Faça login e conheça a carteira digital da nova geração.
           </TextTitle>
