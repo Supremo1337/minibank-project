@@ -11,7 +11,7 @@ import {
 } from "./styles";
 import "react-data-grid/lib/styles.css";
 import DataGrid, { Column } from "react-data-grid";
-import { IconAzul } from "../../../public/icon/IconAzul";
+import { IconAzul } from "../../../public/icon/iconAzul";
 import IconVerde from "../../../public/icon/iconVerde";
 import { CurrencyCircleDollar } from "phosphor-react";
 import useLocalStorage from "use-local-storage";
@@ -142,7 +142,7 @@ export default function TransferActivities() {
         break;
     }
   }
-  
+
   return (
     <Content>
       <GroupFilterAndDataGrid>
@@ -185,7 +185,7 @@ export default function TransferActivities() {
             </>
           )}
         </Filter>
-      <Title fontSize="16px">Atividades de transferência</Title>
+        <Title fontSize="16px">Atividades de transferência</Title>
         <DataGrid columns={columns} rows={filter} />
       </GroupFilterAndDataGrid>
     </Content>
