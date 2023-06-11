@@ -28,7 +28,7 @@ interface ChildModalProps {
   amount: string;
 }
 
-function style(correctWidth: boolean) {
+function style(correctHeight: boolean) {
   return {
     position: "absolute" as "absolute",
     top: "50%",
@@ -37,7 +37,7 @@ function style(correctWidth: boolean) {
     width: "90%",
     maxWidth: 500,
     bgcolor: "#000",
-    height: correctWidth ? 400 : 300,
+    height: correctHeight ? 400 : 300,
     border: "2px solid #000",
     boxShadow: 24,
     display: "flex",
